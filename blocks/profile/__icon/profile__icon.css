@@ -1,3 +1,11 @@
 .profile__icon {
-  padding: 4.25px;
+  width: 7.5px;
+  height: 7.5px;
+  background: url("../../../image/profile/Vector.svg") no-repeat;
+}
+@media (min-width: 768px) {
+  .profile__icon {
+    width: 10px;
+    height: 10px;
+  }
 }

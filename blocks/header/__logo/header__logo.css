@@ -1,5 +1,6 @@
 .header__logo {
   display: flex;
+  background: url("../../../image/header/logo.svg") no-repeat;
   width: 104px;
   height: 25px;
   margin: 0 0 0 27px;
