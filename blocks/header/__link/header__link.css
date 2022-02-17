@@ -1,0 +1,8 @@
+.header__link {
+  display: inline-flex;
+}
+@media (min-width: 907px) {
+  .header__link {
+    margin: 0;
+  }
+}

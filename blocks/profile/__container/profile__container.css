@@ -1,0 +1,4 @@
+.profile__container {
+  display: flex;
+  gap: 0 10px;
+}
