@@ -1,12 +1,8 @@
 .profile__button_edit {
   box-sizing: border-box;
-  display: flex;
   width: 18px;
   height: 18px;
-  border: 1px solid #fff;
   grid-area: button_edit;
-  align-items: center;
-  justify-content: center;
   }
 @media (min-width: 768px) {
   .profile__button_edit {

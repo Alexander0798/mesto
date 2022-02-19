@@ -1,0 +1,8 @@
+.card__button_like_img {
+  background: url(../../../../image/Gallery/Group.svg) center no-repeat;
+  width: 22px;
+  height: 22px;
+}
+.card__button_like_img:hover {
+  opacity: .6;
+}

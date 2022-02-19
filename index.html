@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Metro</title>
   </head>
+
   <body class="root">
     <div class="page">
       <header class="header">
@@ -23,11 +24,13 @@
           <div class="profile__info">
             <h2 class="profile__title text-hiding">Жак-Ив Кусто</h2>
             <p class="profile__specialization text-hiding">Исследователь океана</p>
-            <a href="#" class="profile__button profile__button_edit link"
-              ><div class="profile__icon"></div>
-            </a>
+            <button href="#" class="profile__button profile__button_edit">
+              <span class="profile__button_edit_img"></span>
+            </button>
           </div>
-          <a href="" class="profile__button profile__button_add link">&#43;</a>
+          <button href="" class="profile__button profile__button_add">
+            <span class="profile__button_add_img"></span>
+          </button>
         </section>
 
         <section class="gallery">
@@ -40,17 +43,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Прекрасный пляж</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_one"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_one"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
 
@@ -62,17 +57,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Снежные горы</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_two"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_two"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
 
@@ -84,17 +71,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Закат</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_three"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_three"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
 
@@ -106,17 +85,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Заправочная станция</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_four"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_four"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
             <div class="card__item">
@@ -127,17 +98,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Герань</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_five"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_five"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
 
@@ -149,17 +112,9 @@
               />
               <div class="card__discription">
                 <h3 class="card__label text-hiding">Почти Утонула</h3>
-                <input
-                  type="checkbox"
-                  name="like-background"
-                  id="like-background_six"
-                  value="yes"
-                  class="card__checkbox"
-                />
-                <label
-                  for="like-background_six"
-                  class="card__label-checkbox"
-                ></label>
+                <button class="card__button_like">
+                  <span class="card__button_like_img"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -167,7 +122,7 @@
 
         <section class="popup">
           <form class="popup__container">
-            <a href="#" class="popup__button-close"></a>
+            <button class="popup__button-close"></button>
             <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
             <input type="text" name="name" class="popup__name popup__input" />
             <input

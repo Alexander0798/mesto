@@ -1,0 +1,9 @@
+.card__button_like {
+ display: flex;
+ align-self: center;
+ justify-content: center;
+ align-items: center;
+ background: transparent;
+ border: none;
+ padding: 0;
+}
