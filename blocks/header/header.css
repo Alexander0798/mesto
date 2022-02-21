@@ -1,21 +1,13 @@
 .header {
   position: relative;
-  margin: 28px 0 71px;
+  margin: 28px 0 42px;
+  border-bottom: 1px solid #545454;
+  padding-bottom: 31px;
 }
-.header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -28px;
-  min-height: 1px;
-  background: #545454;
-  width: 100%;
-}
+
 @media (min-width: 768px) {
   .header {
-    margin: 45px 0 77px;
-  }
-  .header::after {
-    bottom: -37px;
+    margin: 45px 0 40px;
+    padding-bottom: 39px;
   }
 }
