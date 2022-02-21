@@ -1,4 +1,4 @@
-.card__button_like {
+.card__button-like {
   align-self: center;
   flex: 0 0 22px;
   background-color: transparent;
@@ -11,6 +11,6 @@
   background-size: cover;
   transition: ease 0.2s;
 }
-.card__button_like:hover {
+.card__button-like:hover {
   opacity: 0.6;
 }

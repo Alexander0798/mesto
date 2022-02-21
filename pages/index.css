@@ -35,7 +35,7 @@
 @import url(../blocks/card/__label/card__label.css);
 @import url(../blocks/main/main.css);
 @import url(../blocks/card/__img/card__img.css);
-@import url(../blocks/card/__button/card__button_like.css);
+@import url(../blocks/card/__button/card__button-like.css);
 
 /*---POPUP---------------------------------------------------------------*/
 
