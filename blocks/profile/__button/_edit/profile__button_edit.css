@@ -3,9 +3,14 @@
   width: 18px;
   height: 18px;
   grid-area: button_edit;
+  background-image: url("../../../../image/profile/Vector.svg");
+  background-size: 7.5px;
+  background-repeat: no-repeat;
+  background-position: center;
   }
 @media (min-width: 768px) {
   .profile__button_edit {
+    background-size: 10px;
     width: 24px;
     height: 24px;
   }

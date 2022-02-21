@@ -11,6 +11,10 @@
   border: 2px solid #fff;
   min-width: 282px;
   margin: 33px 0 0;
+  background-image: url("../../../../image/profile/Vector_add.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
 }
 @media (min-width: 619px) {
   .profile__button_add {
@@ -22,5 +26,6 @@
     min-width: 150px;
     font-size: 42px;
     margin: 0 0 0 auto;
+    background-size: 22px;
   }
 }
