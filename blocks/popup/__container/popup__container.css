@@ -3,15 +3,17 @@
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  max-width: 330px;
-  padding: 25px 22px;
+  max-width: 282px;
+  padding: 27px 22px 25px;
   display: flex;
   flex-direction: column;
   color: black;
-  margin: 0 19px;
+
+  box-sizing: border-box;
 }
 @media (min-width: 500px) {
   .popup__container {
+    max-width: 430px;
     margin: 0;
     padding: 34px 36px 36px;
   }

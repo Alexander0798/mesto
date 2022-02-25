@@ -1,8 +1,8 @@
 .profile__info {
   display: grid;
   grid-template-areas:
-    "title button_edit"
-    "specialization .";
+    "title button-edit"
+    "job .";
   grid-template-columns: auto min-content;
   gap: 7px 10px;
   align-items: center;

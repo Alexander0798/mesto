@@ -23,108 +23,142 @@
           />
           <div class="profile__info">
             <h1 class="profile__title text-hiding">Жак-Ив Кусто</h1>
-            <p class="profile__specialization text-hiding">Исследователь океана
-            </p>
-            <button class="profile__button profile__button_edit"></button>
+            <p class="profile__job text-hiding">Исследователь океана</p>
+            <button
+              type="button"
+              class="profile__button profile__button-edit"
+            ></button>
           </div>
-          <button class="profile__button profile__button_add"></button>
+          <button
+            type="button"
+            class="profile__button profile__button-add"
+          ></button>
         </section>
 
-        <section class="gallery">
-          <div class="gallery__card card">
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item1.jpg"
-                alt="Фото летнего пляжа"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Прекрасный пляж</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item2.jpg"
-                alt="фото снежных гор"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Снежные горы</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item3.jpg"
-                alt="фото заката"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Закат</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item4.jpg"
-                alt="Фото Заправочной станции"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Заправочная станция</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item5.jpg"
-                alt="Фото герани"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Герань</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-
-            <div class="card__item">
-              <img
-                src="./image/Gallery/item6.jpg"
-                alt="Фото человека под водой"
-                class="card__img"
-              />
-              <div class="card__discription">
-                <h2 class="card__label text-hiding">Почти Утонула</h2>
-                <button class="card__button-like"></button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="popup">
-          <form class="popup__container">
-            <button class="popup__button-close"></button>
-            <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-            <input type="text" name="name" class="popup__name popup__input" />
-            <input
-              type="text"
-              name="about-me"
-              class="popup__about-me popup__input"
+        <section class="gallery card">
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item1.jpg"
+              alt="Фото летнего пляжа"
+              class="card__img"
             />
-            <button class="popup__button-save">Сохранить</button>
-          </form>
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Прекрасный пляж</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
+
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item2.jpg"
+              alt="фото снежных гор"
+              class="card__img"
+            />
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Снежные горы</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
+
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item3.jpg"
+              alt="фото заката"
+              class="card__img"
+            />
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Закат</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
+
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item4.jpg"
+              alt="Фото Заправочной станции"
+              class="card__img"
+            />
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Заправочная станция</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item5.jpg"
+              alt="Фото герани"
+              class="card__img"
+            />
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Герань</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
+
+          <div class="card__item">
+            <img
+              src="./image/Gallery/item6.jpg"
+              alt="Фото человека под водой"
+              class="card__img"
+            />
+            <div class="card__discription">
+              <h2 class="card__label text-hiding">Почти Утонула</h2>
+              <button
+                aria-label="отметить нравится"
+                type="button"
+                class="card__button-like"
+              ></button>
+            </div>
+          </div>
         </section>
+
+        <div class="popup">
+          <div class="popup__container">
+            <form class="popup__form" name="editing_information">
+              <button type="button" class="popup__button-close"></button>
+              <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
+              <input
+                type="text"
+                name="name"
+                class="popup__input popup__input-name"
+              />
+              <input
+                type="text"
+                name="about-me"
+                class="popup__input popup__input-job"
+              />
+              <button type="submit" class="popup__button-save">
+                Сохранить
+              </button>
+            </form>
+          </div>
+        </div>
       </main>
 
       <footer class="footer">
-        <p class="footer__copyright">&#169; 2022 Ратушняк Александр</p>
+        <p class="footer__copyright">&copy; 2022 Ратушняк Александр</p>
       </footer>
-
-      <script src="./pages/index.js"></script>
     </div>
+    <script src="./script/index.js"></script>
   </body>
 </html>
