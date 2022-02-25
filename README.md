@@ -18,4 +18,4 @@
 
 **Проект**
 
-* [Ссылка на макет Проект - MESTO](https://alexander0798.github.io/mesto/index.html)
+* [Ссылка на Проект - MESTO](https://alexander0798.github.io/mesto/index.html)
