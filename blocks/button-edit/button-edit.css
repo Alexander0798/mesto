@@ -1,4 +1,4 @@
-.profile_button_edit {
+.button-edit {
   margin-top: 6px;
   box-sizing: border-box;
   width: 18px;
@@ -10,7 +10,7 @@
   background-position: center;
 }
 @media (min-width: 768px) {
-  .profile_button_edit {
+  .button-edit {
     background-size: 10px;
     width: 24px;
     height: 24px;
