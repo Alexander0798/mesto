@@ -13,6 +13,7 @@
   border: none;
   transition: ease 0.2s;
   padding: 0;
+  cursor: pointer;
 }
 .popup__button-save:hover {
   opacity: 0.8;

@@ -1,4 +1,4 @@
-.button-add {
+.profile__button_add_card {
   box-sizing: border-box;
   font-size: 16px;
   color: inherit;
@@ -18,12 +18,12 @@
   border-radius: 2px;
 }
 @media (min-width: 619px) {
-  .button-add {
+  .profile__button_add_card {
     min-width: 581px;
   }
 }
 @media (min-width: 768px) {
-  .button-add {
+  .profile__button_add_card {
     min-width: 150px;
     font-size: 42px;
     margin: 0 0 0 auto;

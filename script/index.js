@@ -1,11 +1,11 @@
 const page = document.querySelector('.page'); //контейнер в котором лежит весь контент
-const profileButton = page.querySelector('.profile__button');
+const profileButtonEdit = page.querySelector('.profile__button_edit_info');
 const popup = page.querySelector('.popup');
 const popupButtonClose = page.querySelector('.popup__button-close');
 const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
-const editProfileName = page.querySelector('.input-name');
-const editPtofileJob = page.querySelector('.input-job');
+const editProfileName = page.querySelector('.popup__input_type_name');
+const editPtofileJob = page.querySelector('.popup__input_type_job');
 const formElement = page.querySelector('.popup__container')
 
 function openPopup() {
@@ -32,7 +32,7 @@ function formSubmitHandler(evt) {
   }
 }-----------закритие попак по облости вокруг формы*/
 
-profileButton.addEventListener('click', openPopup);
+profileButtonEdit.addEventListener('click', openPopup);
 popupButtonClose.addEventListener('click', closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
 //popup.addEventListener('click', closePopupByClickOnOverlay)
