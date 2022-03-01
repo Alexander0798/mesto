@@ -1,11 +1,11 @@
 const page = document.querySelector('.page'); //контейнер в котором лежит весь контент
-const profileButtonEdit = page.querySelector('.profile__button_edit_info');
+const profileButtonEdit = page.querySelector('.profile__button-edit');
 const popup = page.querySelector('.popup');
 const popupButtonClose = page.querySelector('.popup__button-close');
 const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
-const editProfileName = page.querySelector('.popup__input_type_name');
-const editPtofileJob = page.querySelector('.popup__input_type_job');
+const editProfileName = page.querySelector('.popup__input-name');
+const editPtofileJob = page.querySelector('.popup__input-job');
 const formElement = page.querySelector('.popup__container')
 
 function openPopup() {
