@@ -4,8 +4,8 @@ const popup = page.querySelector('.popup');
 const popupButtonClose = page.querySelector('.popup__button-close');
 const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
-const editProfileName = page.querySelector('.popup__input-name');
-const editPtofileJob = page.querySelector('.popup__input-job');
+const editProfileName = page.querySelector('#inputEditName');
+const editPtofileJob = page.querySelector('#inputEditJob');
 const formElement = page.querySelector('.popup__container')
 
 function openPopup() {

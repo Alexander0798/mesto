@@ -1,4 +1,4 @@
-.input {
+.popup__input {
   width: 100%;
   border: none;
   border-bottom: 1px solid rgba(000, 000, 000, 0.2);
@@ -7,6 +7,6 @@
   font-size: 14px;
   line-height: calc(17 / 14);
 }
-.input:not(:last-of-type) {
+.popup__input:not(:last-of-type) {
   margin: 0 0 30px;
 }
