@@ -42,6 +42,7 @@
               alt="Фото летнего пляжа"
               class="card__img"
             />
+            <button class="card__button-remove" type="button"></button>
             <div class="card__discription">
               <h2 class="card__label text-hiding">Прекрасный пляж</h2>
               <button
@@ -132,10 +133,10 @@
           </div>
         </section>
 
-        <div class="popup">
+        <div class="popup" id="popupEditInfo">
           <div class="popup__container">
             <form class="popup__form" name="editing_information">
-              <button type="button" class="popup__button-close"></button>
+              <button type="button" class="popup__button-close" id="buttonCloseEdit"></button>
               <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
               <input
                 type="text"
@@ -157,6 +158,32 @@
             </form>
           </div>
         </div>
+
+        <div class="popup" id="popupAddCard">
+          <div class="popup__container">
+            <form class="popup__form" name="editing_information">
+              <button type="button" class="popup__button-close" id="buttonCloseAdd"></button>
+              <h2 class="popup__title">Новое&nbsp;место</h2>
+              <input
+                type="text"
+                name="name"
+                placeholder="Название"
+                class="popup__input"
+                id="inputAddTitle"
+              />
+              <input
+                type="text"
+                name="job"
+                placeholder="Ссылка на картинку"
+                class="popup__input"
+                id="inputAddLink"
+              />
+              <button type="submit" class="popup__button-save">
+                Создать
+              </button>
+            </form>
+          </div>
+        </div>
       </main>
 
       <footer class="footer">
@@ -164,5 +191,22 @@
       </footer>
     </div>
     <script src="./script/index.js"></script>
+    <template class="item-temlate">
+      <div class="card__item">
+        <img
+          src="./image/gallery/item6.jpg"
+          alt="Фото человека под водой"
+          class="card__img"
+        />
+        <div class="card__discription">
+          <h2 class="card__label text-hiding"></h2>
+          <button
+            aria-label="отметить нравится"
+            type="button"
+            class="card__button-like"
+          ></button>
+        </div>
+      </div>
+    </template>
   </body>
 </html>

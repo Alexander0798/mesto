@@ -36,6 +36,7 @@
 @import url(../blocks/main/main.css);
 @import url(../blocks/card/__img/card__img.css);
 @import url(../blocks/card/__button-like/card__button-like.css);
+@import url(../blocks/card/__button-remove/card__button-remove.css);
 
 /*---POPUP---------------------------------------------------------------*/
 
