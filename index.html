@@ -24,25 +24,21 @@
           <div class="profile__info">
             <h1 class="profile__title text-hiding">Жак-Ив Кусто</h1>
             <p class="profile__job text-hiding">Исследователь океана</p>
-            <button
-              type="button"
-              class="profile__button-edit button"
-            ></button>
+            <button type="button" class="profile__button-edit button"></button>
           </div>
-          <button
-            type="button"
-            class="profile__button-add button"
-          ></button>
+          <button type="button" class="profile__button-add button"></button>
         </section>
 
-     <section class="gallery card">
-
-        </section>
+        <section class="gallery card"></section>
 
         <div class="popup" id="popupEditInfo">
           <div class="popup__container">
-            <form class="popup__form" name="editing_information">
-              <button type="button" class="popup__button-close" id="buttonCloseEdit"></button>
+            <form class="popup__form-edit" name="editing_information">
+              <button
+                type="button"
+                class="popup__button-close"
+                id="buttonCloseEdit"
+              ></button>
               <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
               <input
                 type="text"
@@ -67,8 +63,12 @@
 
         <div class="popup" id="popupAddCard">
           <div class="popup__container">
-            <form class="popup__form" name="editing_information">
-              <button type="button" class="popup__button-close" id="buttonCloseAdd"></button>
+            <form class="popup__form-add" name="addNewCard">
+              <button
+                type="button"
+                class="popup__button-close"
+                id="buttonCloseAdd"
+              ></button>
               <h2 class="popup__title">Новое&nbsp;место</h2>
               <input
                 type="text"
@@ -84,10 +84,25 @@
                 class="popup__input"
                 id="inputAddLink"
               />
-              <button type="submit" class="popup__button-save">
-                Создать
-              </button>
+              <button type="submit" class="popup__button-save">Создать</button>
             </form>
+          </div>
+        </div>
+        <div class="popup" id="popupImgZoom">
+          <div class="popup__container-img">
+            <figure class="popup__figure">
+              <button
+                type="button"
+                class="popup__button-close"
+                id="buttonCloseZoom"
+              ></button>
+              <img
+                src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg"
+                alt=""
+                class="popup__img"
+              />
+              <figcaption class="popup__figcaption"></figcaption>
+            </figure>
           </div>
         </div>
       </main>
@@ -98,21 +113,17 @@
     </div>
     <template id="item-temlate">
       <div class="card__item">
-            <img
-              src=""
-              alt=""
-              class="card__img"
-            />
-            <button class="card__button-remove" type="button"></button>
-            <div class="card__discription">
-              <h2 class="card__label text-hiding"></h2>
-              <button
-                aria-label="отметить нравится"
-                type="button"
-                class="card__button-like"
-              ></button>
-            </div>
-          </div>
+        <img src="" alt="" class="card__img" />
+        <button class="card__button-remove" type="button"></button>
+        <div class="card__discription">
+          <h2 class="card__label text-hiding"></h2>
+          <button
+            aria-label="отметить нравится"
+            type="button"
+            class="card__button-like"
+          ></button>
+        </div>
+      </div>
     </template>
     <script src="./script/index.js"></script>
   </body>

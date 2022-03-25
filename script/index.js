@@ -10,16 +10,17 @@ const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
 const editProfileName = page.querySelector('#inputEditName');
 const editPtofileJob = page.querySelector('#inputEditJob');
-const formElement = page.querySelector('.popup__container')
+const formElementEdit = page.querySelector('.popup__form-edit')
+const formElementAdd = page.querySelector('.popup__form-add')
 
 const galleryContainer = page.querySelector('.gallery')
 const itemTemlateContent = document.querySelector('#item-temlate').content;
 const cardGalleryImg = itemTemlateContent.querySelector('.card__img');
 const cardGallerylabel = itemTemlateContent.querySelector('.card__label');
-const cardGalleryButtonRemove = itemTemlateContent.querySelector('.card__button-remove');
-const cardGalleryButtonLike = itemTemlateContent.querySelector('.card__button-like');
 const cardGalleryElement = itemTemlateContent.querySelector('.card__item')
-const cardGalleryLike = itemTemlateContent.querySelector('.card__button-like')
+const inputGallerylabelValue = page.querySelector('#inputAddTitle');
+const inputGalleryImgValue = page.querySelector('#inputAddLink');
+
 
 function openPopupEdit() {
   popupEditInfo.classList.add('popup_opened');
@@ -36,10 +37,12 @@ function openPopupAdd() {
 }
 function closePopupAdd() {
   popupAddCard.classList.remove('popup_opened');
+  inputGallerylabelValue.value = ''
+  inputGalleryImgValue.value = ''
 }
 
 
-function formSubmitHandler(evt) {
+function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
   profileName.textContent = editProfileName.value;
   profileJob.textContent = editPtofileJob.value;
@@ -58,8 +61,21 @@ profileButtonEdit.addEventListener('click', openPopupEdit);
 profileButtonAdd.addEventListener('click', openPopupAdd);
 popupButtonCloseEdit.addEventListener('click', closePopupEdit);
 popupButtonCloseAdd.addEventListener('click', closePopupAdd);
-formElement.addEventListener('submit', formSubmitHandler);
+formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 //popupEditInfo.addEventListener('click', closePopupByClickOnOverlay)
+
+const popupOpenZoom = page.querySelector('#popupImgZoom')
+const popupGalleryImg = page.querySelector('.popup__img')
+const popupGalleryFigcaption = page.querySelector('.popup__figcaption')
+const popupButtonCloseZoom = page.querySelector('#buttonCloseZoom')
+function openPopupZoom() {
+  popupOpenZoom.classList.add('popup_opened');
+}
+function closePopupZoom() {
+  popupOpenZoom.classList.remove('popup_opened');
+}
+
+popupButtonCloseZoom.addEventListener('click', closePopupZoom);
 
 const initialCards = [
   {
@@ -89,14 +105,19 @@ const initialCards = [
 ];
 
 function setEventListners (itemElement) {
-  itemElement.querySelector('.card__button-remove').addEventListener('click', hendleDelite)
+  itemElement.querySelector('.card__button-remove').addEventListener('click', function(evt){
+    event.target.closest('.card__item')
+    itemElement.remove();
+  })
   itemElement.querySelector('.card__button-like').addEventListener('click', function(evt) {
     event.target.classList.toggle('card_like-active')
   })
-}
-function hendleDelite (event) {
-  const itemElement = event.target.closest('.card__item')
-  itemElement.remove();
+  itemElement.querySelector('.card__img').addEventListener('click', (evt) => {
+    popupGalleryImg.src = evt.target.src
+    popupGalleryImg.alt = evt.target.alt
+    popupGalleryFigcaption.textContent = itemElement.querySelector('.card__label').textContent
+    openPopupZoom()
+  })
 }
 
 function renderItem({name, link}) {
@@ -115,6 +136,28 @@ const cardInfo = initialCards.map(function (item) {
   };
 });
 function render() {
+  cardGalleryImg.addEventListener('click', () => {
+    popupGalleryImg.src = cardGalleryImg.src
+    popupGalleryImg.alt = cardGalleryImg.alt
+    popupGalleryFigcaption.textContent = cardGallerylabel.textContent
+    openPopupZoom()
+  })
   cardInfo.forEach(renderItem)
 }
+
 render()
+
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+  const itemElement = cardGalleryElement.cloneNode(true);
+  cardGallerylabel.textContent = inputGallerylabelValue.value;
+  cardGalleryImg.src = inputGalleryImgValue.value;
+  cardGalleryImg.alt = `картинка ${inputGallerylabelValue.value}`;
+  setEventListners(itemElement);
+  galleryContainer.prepend(itemElement);
+  closePopupAdd()
+
+}
+
+formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
+
