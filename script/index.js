@@ -128,7 +128,7 @@ function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   cardGallerylabel.textContent = inputGallerylabelValue.value;
   cardGalleryImg.src = inputGalleryImgValue.value;
-  cardGalleryImg.alt = `картинка ${inputGallerylabelValue.value}`;
+  cardGalleryImg.alt = `Фото ${inputGallerylabelValue.value}`;
   const itemElement = cardGalleryElement.cloneNode(true);
   setEventListners(itemElement);
   galleryContainer.prepend(itemElement);
