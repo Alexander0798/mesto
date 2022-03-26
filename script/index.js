@@ -1,53 +1,80 @@
 
-const page = document.querySelector('.page'); //контейнер в котором лежит весь контент
+// контейнер в котором лежит весь контент
+const page = document.querySelector('.page');
+
+// кнопки: редактировать профиль, добавить карточку
 const profileButtonEdit = page.querySelector('.profile__button-edit');
 const profileButtonAdd = page.querySelector('.profile__button-add');
+
+// попапы
 const popupEditInfo = page.querySelector('#popupEditInfo');
 const popupAddCard = page.querySelector('#popupAddCard');
-const popupButtonCloseEdit = page.querySelector('#buttonCloseEdit');
-const popupButtonCloseAdd = page.querySelector('#buttonCloseAdd');
+const popupOpenZoom = page.querySelector('#popupImgZoom');
+// все попапы для универсальной функции закрытия
+const popups = page.querySelectorAll('.popup');
+
+// элементы профиля
 const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
+
+// элементы попап профиля
 const editProfileName = page.querySelector('#inputEditName');
 const editPtofileJob = page.querySelector('#inputEditJob');
-const formElementEdit = page.querySelector('.popup__form-edit')
-const formElementAdd = page.querySelector('.popup__form-add')
 
-const galleryContainer = page.querySelector('.gallery')
+// кнопки для открытия попапов
+const formElementEdit = page.querySelector('.popup__form-edit');
+const formElementAdd = page.querySelector('.popup__form-add');
+
+// элементы галлереи и темплейт контейнера
+const galleryContainer = page.querySelector('.gallery');
 const itemTemlateContent = document.querySelector('#item-temlate').content;
-const cardGalleryImg = itemTemlateContent.querySelector('.card__img');
-const cardGallerylabel = itemTemlateContent.querySelector('.card__label');
-const cardGalleryElement = itemTemlateContent.querySelector('.card__item')
+const cardGalleryImg = itemTemlateContent.querySelector('.card__img')
+const cardGallerylabel = itemTemlateContent.querySelector('.card__label')
+const cardGalleryElement = itemTemlateContent.querySelector('.card__item');
+
+// элементы формы добавления карточки
 const inputGallerylabelValue = page.querySelector('#inputAddTitle');
 const inputGalleryImgValue = page.querySelector('#inputAddLink');
 
+// элементы попап карточки
+const popupGalleryImg = page.querySelector('.popup__img');
+const popupGalleryFigcaption = page.querySelector('.popup__figcaption');
 
-function openPopupEdit() {
-  popupEditInfo.classList.add('popup_opened');
+// открытие попапов
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_opened')
+}
+profileButtonEdit.addEventListener('click', () => {
+  openPopup(popupEditInfo)
   editProfileName.value = profileName.textContent
   editPtofileJob.value = profileJob.textContent
-}
-function closePopupEdit() {
-  popupEditInfo.classList.remove('popup_opened');
-}
-function openPopupAdd() {
-  popupAddCard.classList.add('popup_opened');
-  editProfileName.value = profileName.textContent
-  editPtofileJob.value = profileJob.textContent
-}
-function closePopupAdd() {
-  popupAddCard.classList.remove('popup_opened');
+})
+profileButtonAdd.addEventListener('click', () => {
+  openPopup(popupAddCard)
   inputGallerylabelValue.value = ''
   inputGalleryImgValue.value = ''
-}
+});
 
+// закрытие попапов
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+};
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup);
+    }
+  })
+});
 
+// обработчик кнопки: сохранить изменения редактирование профиля
 function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
   profileName.textContent = editProfileName.value;
   profileJob.textContent = editPtofileJob.value;
-  closePopupEdit()
+  closePopup(popupEditInfo)
 }
+formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 
 /*function closePopupByClickOnOverlay (event) {
   if (event.target !== event.currentTarget) {
@@ -57,53 +84,60 @@ function formSubmitHandlerEdit(evt) {
   }
 }-----------закритие попак по облости вокруг формы*/
 
-profileButtonEdit.addEventListener('click', openPopupEdit);
-profileButtonAdd.addEventListener('click', openPopupAdd);
-popupButtonCloseEdit.addEventListener('click', closePopupEdit);
-popupButtonCloseAdd.addEventListener('click', closePopupAdd);
-formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
-//popupEditInfo.addEventListener('click', closePopupByClickOnOverlay)
-
-const popupOpenZoom = page.querySelector('#popupImgZoom')
-const popupGalleryImg = page.querySelector('.popup__img')
-const popupGalleryFigcaption = page.querySelector('.popup__figcaption')
-const popupButtonCloseZoom = page.querySelector('#buttonCloseZoom')
-function openPopupZoom() {
-  popupOpenZoom.classList.add('popup_opened');
-}
-function closePopupZoom() {
-  popupOpenZoom.classList.remove('popup_opened');
-}
-
-popupButtonCloseZoom.addEventListener('click', closePopupZoom);
-
+// масив с контентом для карточек
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Лето, Солне, Песок!',
+    link: '../image/gallery/item1.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Эльбрус это, что то',
+    link: '../image/gallery/item2.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Закат Великолепен',
+    link: '../image/gallery/item3.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Супер Заправка',
+    link: '../image/gallery/item4.jpg'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Отцвели',
+    link: '../image/gallery/item5.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Почти Утонула',
+    link: '../image/gallery/item6.jpg'
   }
 ];
 
+//перебор масива и автаматическое добавление карточек с контентом из масива
+initialCards.forEach(function (element) {
+  cardGalleryImg.src = element.link;
+  cardGalleryImg.alt = `Фото: ${element.name}`;
+  cardGallerylabel.textContent = element.name;
+
+  const itemElement = cardGalleryElement.cloneNode(true);
+  galleryContainer.append(itemElement);
+  setEventListners(itemElement);
+})
+
+// добавление карточек пользователем
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+  cardGallerylabel.textContent = inputGallerylabelValue.value;
+  cardGalleryImg.src = inputGalleryImgValue.value;
+  cardGalleryImg.alt = `картинка ${inputGallerylabelValue.value}`;
+  const itemElement = cardGalleryElement.cloneNode(true);
+  setEventListners(itemElement);
+  galleryContainer.prepend(itemElement);
+  closePopup(popupAddCard)
+
+}
+formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
+
+// обработчик событий внутри карточек
 function setEventListners (itemElement) {
   itemElement.querySelector('.card__button-remove').addEventListener('click', function(evt){
     event.target.closest('.card__item')
@@ -116,48 +150,8 @@ function setEventListners (itemElement) {
     popupGalleryImg.src = evt.target.src
     popupGalleryImg.alt = evt.target.alt
     popupGalleryFigcaption.textContent = itemElement.querySelector('.card__label').textContent
-    openPopupZoom()
+    openPopup(popupOpenZoom)
   })
 }
 
-function renderItem({name, link}) {
-  const itemElement = cardGalleryElement.cloneNode(true);
-  cardGallerylabel.textContent = name;
-  cardGalleryImg.src = link;
-  cardGalleryImg.alt = `картинка ${name}`;
-  setEventListners(itemElement);
-  galleryContainer.append(itemElement);
-}
-
-const cardInfo = initialCards.map(function (item) {
-  return {
-    name: item.name,
-    link: item.link
-  };
-});
-function render() {
-  cardGalleryImg.addEventListener('click', () => {
-    popupGalleryImg.src = cardGalleryImg.src
-    popupGalleryImg.alt = cardGalleryImg.alt
-    popupGalleryFigcaption.textContent = cardGallerylabel.textContent
-    openPopupZoom()
-  })
-  cardInfo.forEach(renderItem)
-}
-
-render()
-
-function formSubmitHandlerAdd(evt) {
-  evt.preventDefault();
-  const itemElement = cardGalleryElement.cloneNode(true);
-  cardGallerylabel.textContent = inputGallerylabelValue.value;
-  cardGalleryImg.src = inputGalleryImgValue.value;
-  cardGalleryImg.alt = `картинка ${inputGallerylabelValue.value}`;
-  setEventListners(itemElement);
-  galleryContainer.prepend(itemElement);
-  closePopupAdd()
-
-}
-
-formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
 
