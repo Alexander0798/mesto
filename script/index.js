@@ -1,30 +1,3 @@
-// масив с карточками
-const initialCards = [
-  {
-    name: 'Лето, Солне, Песок!',
-    link: './image/gallery/item1.jpg'
-  },
-  {
-    name: 'Эльбрус это, что то',
-    link: './image/gallery/item2.jpg'
-  },
-  {
-    name: 'Закат Великолепен',
-    link: './image/gallery/item3.jpg'
-  },
-  {
-    name: 'Супер Заправка',
-    link: './image/gallery/item4.jpg'
-  },
-  {
-    name: 'Отцвели',
-    link: './image/gallery/item5.jpg'
-  },
-  {
-    name: 'Почти Утонула',
-    link: './image/gallery/item6.jpg'
-  }
-];
 
 // контейнер в котором лежит весь контент
 const page = document.querySelector('.page');
@@ -37,6 +10,7 @@ const profileButtonAdd = page.querySelector('.profile__button-add');
 const popupEditInfo = page.querySelector('#popupEditInfo');
 const popupAddCard = page.querySelector('#popupAddCard');
 const popupOpenZoom = page.querySelector('#popupImgZoom');
+
 // все попапы для универсальной функции закрытия
 const popups = page.querySelectorAll('.popup');
 
@@ -44,22 +18,20 @@ const popups = page.querySelectorAll('.popup');
 const profileName = page.querySelector('.profile__title');
 const profileJob = page.querySelector('.profile__job');
 
-// элементы попап профиля
-const profileEditName = page.querySelector('#inputEditName');
-const ptofileEditJob = page.querySelector('#inputEditJob');
-
-// кнопки для открытия попапов
-const formElementEdit = page.querySelector('.popup__form-edit');
-const formElementAdd = page.querySelector('.popup__form-add');
+// элементы form edit
+const profileEditName = document.forms.editInfo.name
+const ptofileEditJob = document.forms.editInfo.job
+// элементы form add
+const inputGallerylabel = document.forms.addNewCard.description
+const inputGalleryImg = document.forms.addNewCard.foto
+// forms
+const formElementEdit = document.forms.editInfo
+const formElementAdd = document.forms.addNewCard
 
 // элементы галлереи и темплейт контейнера
 const galleryContainer = page.querySelector('.gallery');
 const itemTemlateContent = document.querySelector('#item-temlate').content;
 const cardGalleryElement = itemTemlateContent.querySelector('.card__item');
-
-// элементы формы добавления карточки
-const inputGallerylabel = page.querySelector('#inputAddTitle');
-const inputGalleryImg = page.querySelector('#inputAddLink');
 
 // элементы попап карточки
 const popupGalleryImg = page.querySelector('.popup__img');
@@ -68,6 +40,7 @@ const popupGalleryFigcaption = page.querySelector('.popup__figcaption');
 // открытие попапов
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupEsc)
 }
 profileButtonEdit.addEventListener('click', () => {
   profileEditName.value = profileName.textContent
@@ -75,14 +48,14 @@ profileButtonEdit.addEventListener('click', () => {
   openPopup(popupEditInfo)
 })
 profileButtonAdd.addEventListener('click', () => {
-  inputGallerylabel.value = ''
-  inputGalleryImg.value = ''
+  formElementAdd.reset();
   openPopup(popupAddCard)
 });
 
 // закрытие попапов
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.addEventListener('keydown', closePopupEsc)
 };
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -91,7 +64,12 @@ popups.forEach((popup) => {
     }
   })
 });
-
+const closePopupEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
 // обработчик кнопки: сохранить изменения редактирование профиля
 const formSubmitHandlerEdit = (evt) => {
   evt.preventDefault();
@@ -101,10 +79,7 @@ const formSubmitHandlerEdit = (evt) => {
 }
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 
-// масив с контентом для карточек
-
-
-//перебор масива и автаматическое добавление карточек с контентом из масива
+// добавление карточек
 const riderItem = (title, link) => {
   const cardElement = itemTemlateContent.cloneNode(true)
   const cardGalleryElement = cardElement.querySelector('.card__item');
@@ -114,13 +89,17 @@ const riderItem = (title, link) => {
   const cardLink = cardGalleryImg.src = link
   const cardAlt = cardGalleryImg.alt = title
 
+  // изменение состояний кнопки лайк
   cardElement.querySelector('.card__button-like').addEventListener('click', (evt) => {
-    event.target.classList.toggle('card_like-active')
+    evt.target.classList.toggle('card_like-active')
   });
+
+  // удаление карточки
   cardElement.querySelector('.card__button-remove').addEventListener('click', (evt) => {
-    event.target.closest('.card__item')
+    evt.target.closest('.card__item')
     cardGalleryElement.remove();
   });
+  // добовление src and alt для фотографии карточки
   cardElement.querySelector('.card__img').addEventListener('click', (evt) => {
     popupGalleryImg.src = cardLink
     popupGalleryImg.alt = cardAlt
@@ -130,6 +109,7 @@ const riderItem = (title, link) => {
   return cardElement
 }
 
+// перебор масива
 const initCard = () => {
   initialCards.forEach((item) => {
     galleryContainer.append(riderItem(item.name, item.link))
@@ -137,10 +117,11 @@ const initCard = () => {
 }
 initCard()
 
-const formSubmitHandlerAdd = (evt) =>{
+const formSubmitHandlerAdd = (evt) => {
   evt.preventDefault()
   galleryContainer.prepend(riderItem(inputGallerylabel.value, inputGalleryImg.value))
   closePopup(popupAddCard)
+  formElementAdd.reset();
 }
 formElementAdd.addEventListener('submit', formSubmitHandlerAdd);
 

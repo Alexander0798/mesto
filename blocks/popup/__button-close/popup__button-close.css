@@ -6,12 +6,13 @@
   display: block;
   width: 20px;
   height: 20px;
-  background: url("../../../image/popup/close_icon.svg") center / cover no-repeat;
+  background: url("../../../image/popup/close_icon.svg") center / cover
+    no-repeat;
   cursor: pointer;
-  transition: ease .2s;
+  transition: ease 0.2s;
 }
-.popup__button-close:hover{
-  opacity: .6;
+.popup__button-close:hover {
+  opacity: 0.6;
 }
 @media (min-width: 680px) {
   .popup__button-close {
