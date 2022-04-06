@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_error',
+  popupError: '.popup__error',
+  errorVisible: 'popup__error_visible'
+}
 // находит span для заполнение текстом ошибки
 const getErrorElement = (inputElement) => {
   return inputElement.closest('.popup__label').querySelector('.popup__error');
@@ -7,26 +16,26 @@ const showError = (formElement, inputElement, errorMessege) => {
   const errorElement = getErrorElement(inputElement)
 
   errorElement.textContent = errorMessege;
-  errorElement.classList.add('popup__error_visible')
-  inputElement.classList.add('popup__input_error')
+  errorElement.classList.add(config.errorVisible)
+  inputElement.classList.add(config.inputErrorClass)
 }
 // добовляет классы для скрытия ошибки при валидной формы
-const hideError = (formElement, inputElement) => {
+const hideError = (formElement, inputElement,) => {
   const errorElement = getErrorElement(inputElement)
 
   errorElement.textContent = '';
-  errorElement.classList.remove('popup__error_visible')
-  inputElement.classList.remove('popup__input_error')
+  errorElement.classList.remove(config.errorVisible)
+  inputElement.classList.remove(config.inputErrorClass)
 }
 // проверяет форму на не валидность
-const checkValidity = (formElement, inputElement) => {
+const checkValidity = (formElement, inputElement, config) => {
   const isInputNotValid = !inputElement.validity.valid;
 
   if(isInputNotValid) {
     const errorMessage = inputElement.validationMessage
-    showError(formElement, inputElement, errorMessage)
+    showError(formElement, inputElement, errorMessage, config)
   }else {
-    hideError(formElement, inputElement)
+    hideError(formElement, inputElement, config)
   }
 }
 
@@ -38,17 +47,17 @@ const toogleButtonState = (inputList, submitButtonElement) => {
     })
 
   if (hasInvalidInput) {
-    submitButtonElement.classList.add('popup__submit_inactive');
+    submitButtonElement.classList.add(config.inactiveButtonClass);
     submitButtonElement.setAttribute('disabled', true);
   } else {
-    submitButtonElement.classList.remove('popup__submit_inactive');
+    submitButtonElement.classList.remove(config.inactiveButtonClass);
     submitButtonElement.removeAttribute('disabled');
   }
 };
 
 const setEventListeners = (formElement) => {
-  const inputList = formElement.querySelectorAll('.popup__input');
-  const submitButtonElement = formElement.querySelector('.popup__submit')
+  const inputList = formElement.querySelectorAll(config.inputSelector);
+  const submitButtonElement = formElement.querySelector(config.submitButtonSelector)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', (evt) => {
       checkValidity(formElement, inputElement)
@@ -60,8 +69,8 @@ const setEventListeners = (formElement) => {
 
 // отслеживает клик по отправке формы
 
-const enableValidation = () => {
-  const formList = document.querySelectorAll('.popup__form');
+const enableValidation = (config) => {
+  const formList = document.querySelectorAll(config.formSelector);
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
@@ -70,4 +79,4 @@ const enableValidation = () => {
     setEventListeners(formElement)
   })
 }
-enableValidation();
+enableValidation(config);
