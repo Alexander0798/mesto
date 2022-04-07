@@ -8,9 +8,8 @@ const config = {
   errorVisible: 'popup__error_visible'
 }
 // находит span для заполнение текстом ошибки
-const getErrorElement = (inputElement) => {
-  return inputElement.closest('.popup__label').querySelector('.popup__error');
-}
+const getErrorElement = (inputElement) => inputElement.closest('.popup__label').querySelector('.popup__error');
+
 // добовляет классы для отображения ошибки при не валидной формы
 const showError = (formElement, inputElement, errorMessege) => {
   const errorElement = getErrorElement(inputElement)
