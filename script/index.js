@@ -66,6 +66,24 @@ const popupGalleryImg = page.querySelector('.popup__img');
 const popupGalleryFigcaption = page.querySelector('.popup__figcaption');
 
 // объект для валидации форм
+<<<<<<< HEAD
+=======
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorVisible: 'popup__error_visible'
+}
+
+// запуск валидацию формы
+const profileValidation = new FormValidator(config, formElementEdit);
+const addCardValidation = new FormValidator(config, formElementAdd);
+profileValidation.enableValidation();
+addCardValidation.enableValidation();
+
+>>>>>>> features
 
 // открытие попапов
 
@@ -73,11 +91,37 @@ const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened')
   document.addEventListener('keydown', closePopupEsc)
 }
+<<<<<<< HEAD
   profileButtonEdit.addEventListener('click', () => {
     profileEditName.value = profileName.textContent
     ptofileEditJob.value = profileJob.textContent
     openPopup(popupEditInfo)
     profileValidation.ressetValidForm()
+=======
+profileButtonEdit.addEventListener('click', () => {
+  profileEditName.value = profileName.textContent
+  ptofileEditJob.value = profileJob.textContent
+  profileValidation.ressetValidForm()
+  openPopup(popupEditInfo)
+
+})
+profileButtonAdd.addEventListener('click', () => {
+  formElementAdd.reset();
+  addCardValidation.ressetValidForm()
+  openPopup(popupAddCard)
+});
+
+// закрытие попапов
+export const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc)
+};
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup);
+    }
+>>>>>>> features
   })
 
   profileButtonAdd.addEventListener('click', () => {
@@ -137,6 +181,7 @@ formElementAdd.addEventListener('submit', (evt) => {
   galleryContainer.prepend(cardAdd)
   closePopup(popupAddCard)
 });
+<<<<<<< HEAD
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -152,4 +197,6 @@ const profileValidation = new FormValidator(config, formElementEdit);
 const addCardValidation = new FormValidator(config, formElementAdd);
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
+=======
+>>>>>>> features
 
