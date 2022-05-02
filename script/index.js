@@ -1,3 +1,32 @@
+import { Cards } from './cards.js';
+import { FormValidator } from './formvalidator.js';
+
+const initialCards = [
+  {
+    name: 'Лето, Солне, Песок!',
+    link: './image/gallery/item1.jpg'
+  },
+  {
+    name: 'Эльбрус это, что то',
+    link: './image/gallery/item2.jpg'
+  },
+  {
+    name: 'Закат Великолепен',
+    link: './image/gallery/item3.jpg'
+  },
+  {
+    name: 'Супер Заправка',
+    link: './image/gallery/item4.jpg'
+  },
+  {
+    name: 'Отцвели',
+    link: './image/gallery/item5.jpg'
+  },
+  {
+    name: 'Почти Утонула',
+    link: './image/gallery/item6.jpg'
+  }
+];
 
 
 // контейнер в котором лежит весь контент
@@ -31,116 +60,96 @@ const formElementAdd = document.forms.addNewCard
 
 // элементы галлереи и темплейт контейнера
 const galleryContainer = page.querySelector('.gallery');
-const itemTemlateContent = document.querySelector('#item-temlate').content;
-const cardGalleryElement = itemTemlateContent.querySelector('.card__item');
 
 // элементы попап карточки
 const popupGalleryImg = page.querySelector('.popup__img');
 const popupGalleryFigcaption = page.querySelector('.popup__figcaption');
 
-
-const clearError = (popupElemen) => {
-  const inputList = popupElemen.querySelectorAll('.popup__input')
-  const errorText = popupElemen.querySelectorAll('.popup__error')
-  const submitButtonElement = popupElemen.querySelector('.popup__submit')
-
-  errorText.forEach((errorElement) => {
-    errorElement.textContent = ''
-  })
-  inputList.forEach((errorInput) => {
-    errorInput.classList.remove('popup__input_error')
-  })
-
-  toogleButtonState(inputList, submitButtonElement)
+// объект для валидации форм
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorVisible: 'popup__error_visible'
 }
+
+// запуск валидацию формы
+const profileValidation = new FormValidator(config, formElementEdit);
+const addCardValidation = new FormValidator(config, formElementAdd);
+profileValidation.enableValidation();
+addCardValidation.enableValidation();
 
 
 // открытие попапов
+
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_opened')
   document.addEventListener('keydown', closePopupEsc)
 }
-  profileButtonEdit.addEventListener('click', () => {
-    profileEditName.value = profileName.textContent
-    ptofileEditJob.value = profileJob.textContent
-    openPopup(popupEditInfo)
-    clearError(popupEditInfo)
-  })
-  profileButtonAdd.addEventListener('click', () => {
-    formElementAdd.reset();
-    openPopup(popupAddCard)
-    clearError(popupAddCard)
-  });
+profileButtonEdit.addEventListener('click', () => {
+  profileEditName.value = profileName.textContent
+  ptofileEditJob.value = profileJob.textContent
+  profileValidation.ressetValidForm()
+  openPopup(popupEditInfo)
 
-  // закрытие попапов
-  const closePopup = (popup) => {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupEsc)
-  };
-  popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')) {
-        closePopup(popup);
-      }
-    })
-  });
-  const closePopupEsc = (evt) => {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_opened')
-      closePopup(openedPopup)
+})
+profileButtonAdd.addEventListener('click', () => {
+  formElementAdd.reset();
+  addCardValidation.ressetValidForm()
+  openPopup(popupAddCard)
+});
+
+// закрытие попапов
+export const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc)
+};
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup);
     }
+  })
+})
+const closePopupEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
   }
-  // обработчик кнопки: сохранить изменения редактирование профиля
-  const formSubmitHandlerEdit = (evt) => {
-    evt.preventDefault();
-    profileName.textContent = profileEditName.value;
-    profileJob.textContent = ptofileEditJob.value;
-    closePopup(popupEditInfo)
-  }
-  formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
+}
+// открытие попапа с картркой
+export const popupImg = (name, link) => {
+  popupGalleryImg.src = link
+  popupGalleryImg.alt = name
+  popupGalleryFigcaption.textContent = name
+  openPopup(popupOpenZoom)
+}
 
-  // добавление карточек
-  const riderItem = (title, link) => {
-    const cardElement = itemTemlateContent.cloneNode(true)
-    const cardGalleryElement = cardElement.querySelector('.card__item');
-    const cardGalleryImg = cardElement.querySelector('.card__img')
+// обработчик кнопки: сохранить изменения редактирование профиля
+const formSubmitHandlerEdit = (evt) => {
+  evt.preventDefault();
+  profileName.textContent = profileEditName.value;
+  profileJob.textContent = ptofileEditJob.value;
+  closePopup(popupEditInfo)
+}
+formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 
-    const cardLabel = cardElement.querySelector('.card__label').textContent = title
-    const cardLink = cardGalleryImg.src = link
-    const cardAlt = cardGalleryImg.alt = title
+// генерация карточек из масива
+initialCards.forEach((item) => {
+  const card = new Cards(item, '#item-temlate')
+  const cardAdd = card.generateCard()
+  galleryContainer.append(cardAdd)
+})
 
-    // изменение состояний кнопки лайк
-    cardElement.querySelector('.card__button-like').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('card_like-active')
-    });
+// добавление новой карточки
 
-    // удаление карточки
-    cardElement.querySelector('.card__button-remove').addEventListener('click', (evt) => {
-      evt.target.closest('.card__item')
-      cardGalleryElement.remove();
-    });
-    // добовление src and alt для фотографии карточки
-    cardElement.querySelector('.card__img').addEventListener('click', (evt) => {
-      popupGalleryImg.src = cardLink
-      popupGalleryImg.alt = cardAlt
-      popupGalleryFigcaption.textContent = cardLabel
-      openPopup(popupOpenZoom)
-    });
-    return cardElement
-  }
-
-  const initCard = () => {
-    initialCards.forEach((item) => {
-      galleryContainer.append(riderItem(item.name, item.link))
-    })
-  }
-  initCard()
-
-  const formSubmitHandlerAdd = (evt) => {
-    evt.preventDefault()
-    galleryContainer.prepend(riderItem(inputGallerylabel.value, inputGalleryImg.value))
-    formElementAdd.reset();
-    closePopup(popupAddCard)
-  }
-  formElementAdd.addEventListener('submit', formSubmitHandlerAdd,);
+formElementAdd.addEventListener('submit', (evt) => {
+  evt.preventDefault()
+  const generateNewCard = new Cards({ name: inputGallerylabel.value, link: inputGalleryImg.value }, '#item-temlate')
+  const cardAdd = generateNewCard.generateCard()
+  galleryContainer.prepend(cardAdd)
+  closePopup(popupAddCard)
+});
 
