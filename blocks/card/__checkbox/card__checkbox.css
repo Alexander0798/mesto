@@ -1,0 +1,28 @@
+.card__checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.card__checkbox + .card__label-checkbox {
+  display: inline-flex;
+  align-items: center;
+}
+.card__checkbox + .card__label-checkbox::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 19px;
+  background-image: url("../../../image/Gallery/Group.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.card__checkbox:checked + .card__label-checkbox::before {
+  background-image: url("../../../image/Gallery/Union.svg");
+  transition: ease .7s;
+}
+.card__checkbox:not(:disabled):not(:checked):hover
+  + .card__label-checkbox::before {
+  opacity: 0.2;
+  transition: ease .3s;
+}

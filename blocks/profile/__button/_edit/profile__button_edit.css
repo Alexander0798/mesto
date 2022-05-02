@@ -1,0 +1,14 @@
+.profile__button_edit {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #fff;
+  grid-area: button_edit;
+}
+@media (min-width: 768px) {
+  .profile__button_edit {
+    width: 24px;
+    height: 24px;
+  }
+}

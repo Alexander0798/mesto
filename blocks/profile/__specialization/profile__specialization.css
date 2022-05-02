@@ -1,0 +1,12 @@
+.profile__specialization {
+  margin: 0;
+  font-size: 14px;
+  line-height: calc(17 / 14);
+  letter-spacing: 0.6px;
+  grid-area: specialization;
+}
+@media (min-width: 768px) {
+  .profile__specialization {
+    font-size: 18px;
+  }
+}
