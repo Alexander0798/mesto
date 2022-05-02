@@ -1,5 +1,5 @@
-import { Cards } from './cards.js';
-import { FormValidator } from './formvalidator.js';
+import { Cards } from './Cards.js';
+import { FormValidator } from './FormValidator.js';
 
 const initialCards = [
   {
@@ -128,28 +128,30 @@ export const popupImg = (name, link) => {
 }
 
 // обработчик кнопки: сохранить изменения редактирование профиля
-const formSubmitHandlerEdit = (evt) => {
+const submitFormEdit = (evt) => {
   evt.preventDefault();
   profileName.textContent = profileEditName.value;
   profileJob.textContent = ptofileEditJob.value;
   closePopup(popupEditInfo)
 }
-formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
+formElementEdit.addEventListener('submit', submitFormEdit);
+
+function createCard(item) {
+  const card = new Cards(item, '#item-temlate')
+  const cardElement = card.generateCard()
+  return cardElement
+}
 
 // генерация карточек из масива
 initialCards.forEach((item) => {
-  const card = new Cards(item, '#item-temlate')
-  const cardAdd = card.generateCard()
-  galleryContainer.append(cardAdd)
+  galleryContainer.append(createCard(item))
 })
 
 // добавление новой карточки
 
 formElementAdd.addEventListener('submit', (evt) => {
   evt.preventDefault()
-  const generateNewCard = new Cards({ name: inputGallerylabel.value, link: inputGalleryImg.value }, '#item-temlate')
-  const cardAdd = generateNewCard.generateCard()
-  galleryContainer.prepend(cardAdd)
+  galleryContainer.prepend(createCard({ name: inputGallerylabel.value, link: inputGalleryImg.value }))
   closePopup(popupAddCard)
 });
 
