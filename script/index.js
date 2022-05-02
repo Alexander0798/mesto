@@ -64,6 +64,23 @@ const galleryContainer = page.querySelector('.gallery');
 const popupGalleryImg = page.querySelector('.popup__img');
 const popupGalleryFigcaption = page.querySelector('.popup__figcaption');
 
+// объект для валидации форм
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorVisible: 'popup__error_visible'
+}
+
+// запуск валидацию формы
+const profileValidation = new FormValidator(config, formElementEdit);
+const addCardValidation = new FormValidator(config, formElementAdd);
+profileValidation.enableValidation();
+addCardValidation.enableValidation();
+
+
 // открытие попапов
 
 const openPopup = (popupElement) => {
@@ -73,14 +90,14 @@ const openPopup = (popupElement) => {
 profileButtonEdit.addEventListener('click', () => {
   profileEditName.value = profileName.textContent
   ptofileEditJob.value = profileJob.textContent
-  openPopup(popupEditInfo)
   profileValidation.ressetValidForm()
+  openPopup(popupEditInfo)
 
 })
 profileButtonAdd.addEventListener('click', () => {
   formElementAdd.reset();
-  openPopup(popupAddCard)
   addCardValidation.ressetValidForm()
+  openPopup(popupAddCard)
 });
 
 // закрытие попапов
@@ -135,19 +152,3 @@ formElementAdd.addEventListener('submit', (evt) => {
   closePopup(popupAddCard)
 });
 
-// объект для валидации форм
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_inactive',
-  inputErrorClass: 'popup__input_error',
-  errorVisible: 'popup__error_visible'
-}
-
-
-// запуск валидацию формы
-const profileValidation = new FormValidator(config, formElementEdit);
-const addCardValidation = new FormValidator(config, formElementAdd);
-profileValidation.enableValidation();
-addCardValidation.enableValidation();

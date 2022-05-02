@@ -11,8 +11,8 @@ export class FormValidator {
   }
 // не валидный элемент
   _hasInvalidInput() {
-    return this._inputList.some((inputElement) => {
-     !inputElement.validity.valid
+   return this._inputList.some((inputElement) => {
+     return !inputElement.validity.valid
     })
   }
 // проверка формы на валидновсь
