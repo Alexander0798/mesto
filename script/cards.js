@@ -6,6 +6,7 @@ export class Cards {
     this._link = data.link;
     this._cardSelector = cardSelector;
   }
+  // клонирую содиржимое темплейт тега
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -15,6 +16,7 @@ export class Cards {
 
     return cardElement
   }
+  // генерирую карточки
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.card__img').src = this._link
@@ -23,7 +25,7 @@ export class Cards {
     this._setEventListeners()
     return this._element
   }
-
+// обработчики событий
   _setEventListeners() {
     this._element.querySelector('.card__button-like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('card_like-active')
@@ -36,6 +38,5 @@ export class Cards {
     })
 
   }
-
 
 }
