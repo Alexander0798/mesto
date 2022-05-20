@@ -1,0 +1,12 @@
+.profile__job {
+  margin: 0;
+  font-size: 14px;
+  line-height: calc(17 / 14);
+  grid-area: job;
+}
+@media (min-width: 768px) {
+  .profile__job {
+    font-size: 18px;
+    line-height: calc(22 / 18);
+  }
+}

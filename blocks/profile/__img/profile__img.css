@@ -1,0 +1,13 @@
+.profile__img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 0 26px;
+  flex: 0 0 auto;
+}
+@media (min-width: 768px) {
+  .profile__img {
+    margin: 0;
+  }
+}

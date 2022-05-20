@@ -1,0 +1,6 @@
+.card_like-active {
+  background-image: url("../../../image/gallery/union.svg");
+}
+.card_like-active:hover {
+  opacity: 1;
+}
