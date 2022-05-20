@@ -1,8 +1,0 @@
-.page {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  max-width: 880px;
-  margin: 0 auto;
-  box-sizing: content-box;
-}

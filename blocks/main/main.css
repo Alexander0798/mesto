@@ -1,8 +1,0 @@
-.main {
-  padding: 0 19px;
-}
-@media (min-width: 898px) {
-  .main {
-    padding: 0;
-  }
-}

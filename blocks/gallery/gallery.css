@@ -1,8 +1,0 @@
-.gallery {
-  margin: 36px 0 48px;
-}
-@media (min-width: 768px) {
-  .gallery {
-    margin: 50px 0 66px;
-  }
-}
