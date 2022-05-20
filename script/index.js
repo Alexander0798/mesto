@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { Cards } from './cards.js';
 import { FormValidator } from './formvalidator.js';
 
