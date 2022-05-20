@@ -1,14 +1,12 @@
-import { popupImg } from './index.js';
-
-export class Cards {
-  constructor(data, cardSelector) {
+export default class Cards {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardSelector)
+    const cardElement = this._cardSelector
       .content
       .querySelector('.card__item')
       .cloneNode(true);
@@ -32,7 +30,7 @@ export class Cards {
       this._element.remove()
     })
     this._element.querySelector('.card__img').addEventListener('click', () => {
-      popupImg(this._name, this._link)
+      this._handleCardClick(this._link, this._name)
     })
 
   }
