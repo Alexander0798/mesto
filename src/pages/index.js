@@ -1,3 +1,5 @@
+import './index.css'; // стили для webpack
+
 import Cards from '../components/Cards.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';

@@ -1,27 +1,34 @@
+const cardImage1 = new URL('../image/gallery/item1.jpg', import.meta.url);
+const cardImage2 = new URL('../image/gallery/item2.jpg', import.meta.url);
+const cardImage3 = new URL('../image/gallery/item3.jpg', import.meta.url);
+const cardImage4 = new URL('../image/gallery/item4.jpg', import.meta.url);
+const cardImage5 = new URL('../image/gallery/item5.jpg', import.meta.url);
+const cardImage6 = new URL('../image/gallery/item6.jpg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Лето, Солне, Песок!',
-    link: './image/gallery/item1.jpg'
+    link: cardImage1
   },
   {
     name: 'Эльбрус это, что то',
-    link: './image/gallery/item2.jpg'
+    link: cardImage2
   },
   {
     name: 'Закат Великолепен',
-    link: './image/gallery/item3.jpg'
+    link: cardImage3
   },
   {
     name: 'Супер Заправка',
-    link: './image/gallery/item4.jpg'
+    link: cardImage4
   },
   {
     name: 'Отцвели',
-    link: './image/gallery/item5.jpg'
+    link: cardImage5
   },
   {
     name: 'Почти Утонула',
-    link: './image/gallery/item6.jpg'
+    link: cardImage6
   }
 ];
 
