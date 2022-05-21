@@ -1,34 +1,34 @@
-const cardImage1 = new URL('../image/gallery/item1.jpg', import.meta.url);
-const cardImage2 = new URL('../image/gallery/item2.jpg', import.meta.url);
-const cardImage3 = new URL('../image/gallery/item3.jpg', import.meta.url);
-const cardImage4 = new URL('../image/gallery/item4.jpg', import.meta.url);
-const cardImage5 = new URL('../image/gallery/item5.jpg', import.meta.url);
-const cardImage6 = new URL('../image/gallery/item6.jpg', import.meta.url);
+const ImageCard1 = new URL('../image/gallery/item1.jpg', import.meta.url);
+const ImageCard2 = new URL('../image/gallery/item2.jpg', import.meta.url);
+const ImageCard3 = new URL('../image/gallery/item3.jpg', import.meta.url);
+const ImageCard4 = new URL('../image/gallery/item4.jpg', import.meta.url);
+const ImageCard5 = new URL('../image/gallery/item5.jpg', import.meta.url);
+const ImageCard6 = new URL('../image/gallery/item6.jpg', import.meta.url);
 
 export const initialCards = [
   {
     name: 'Лето, Солне, Песок!',
-    link: cardImage1
+    link: ImageCard1
   },
   {
     name: 'Эльбрус это, что то',
-    link: cardImage2
+    link: ImageCard2
   },
   {
     name: 'Закат Великолепен',
-    link: cardImage3
+    link: ImageCard3
   },
   {
     name: 'Супер Заправка',
-    link: cardImage4
+    link: ImageCard4
   },
   {
     name: 'Отцвели',
-    link: cardImage5
+    link: ImageCard5
   },
   {
     name: 'Почти Утонула',
-    link: cardImage6
+    link: ImageCard6
   }
 ];
 

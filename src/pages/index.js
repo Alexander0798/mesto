@@ -26,7 +26,9 @@ import {
 
 
 const createCard = (item) => {
-  const newCard = new Cards(item, temlateContainer, (link, name) => { popupImg.open(link, name); });
+  const newCard = new Cards(item, temlateContainer, (link, name) => {
+    popupImg.open(link, name);
+  });
   return newCard.generateCard();
 }
 
@@ -76,7 +78,7 @@ profileButtonEdit.addEventListener('click', function () {
 
 // отслеживание кнопки "добавить карточку"
 
-profileButtonAdd.addEventListener('click', function () {    // отслеживание кнопки "добавить карточку"
+profileButtonAdd.addEventListener('click', function () {
   addCardValidation.toogleButtonState();
   popupAdd.open();
 });
