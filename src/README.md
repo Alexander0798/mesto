@@ -20,4 +20,4 @@
 
 **Проект**
 
-* [Ссылка на Проект - MESTO](https://github.com/Alexander0798/mesto/edit/main/src/index.html)
+* [Ссылка на Проект - MESTO](https://github.com/Alexander0798/mesto/index.html)
