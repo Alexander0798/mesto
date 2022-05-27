@@ -18,7 +18,7 @@ export default class Popup {
       this.close();
     };
   }
-  setEventListeners() {   // установить слушатели
+  setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {  // закрыть попапа нажатием на крестик или оверлей
       if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')) {
         this.close();

@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js"
 import {
   config,
   profileEditName,
@@ -14,7 +15,6 @@ import {
   profileName,
   profileJob,
   profileAvatar,
-  initialCards,
   profileButtonEdit,
   profileButtonAdd,
   profileButonEditAvatar,
@@ -37,6 +37,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
+
 let userId;
 
 // Загрузка готовых карточек и данных о пользователе с сервера
@@ -50,6 +51,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(`Ошибка: ${err}`);
   });
 
+// создание карточек
   const createCard = (data) => {
     const newCard = new Cards(data, temlateContainer, userId, {
       handleCardClick: (name, link) => {
@@ -86,25 +88,49 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     });
     return newCard.generateCard();
   }
+// отрисовка карточек
+  const cardSection = new Section((data) => {
+    cardSection.addItem(createCard(data));
+  }
+    , galleryContainer);
 
-  const editProfile = new PopupWithForm(popupEditInfo, (userData) => {
-    editProfile.loading(true);
+
+  // создание новой карточкий пользователем
+const addCardPopup = new PopupWithForm(popupAddCard, (data) => {
+  addCardPopup.loading(true)
+  api.addCard(data)
+    .then((data) => {
+      const addNewCard = createCard(data);
+      cardSection.prependItem(addNewCard);
+    }).catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      addCardPopup.loading(false);
+    });
+});
+
+// попап редактирования данныx профиля
+
+  const editProfilePopup = new PopupWithForm(popupEditInfo, (userData) => {
+    editProfilePopup.loading(true);
     api.editUserInfo(userData)
       .then((userData) => {
         userInfo.setUserInfo(userData);
-        editProfile.close();
+        editProfilePopup.close();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        editProfile.loading(false);
+        editProfilePopup.loading(false);
       });
   });
-  editProfile.setEventListeners();
-
+  editProfilePopup.setEventListeners();
+//
 const userInfo = new UserInfo({ name: profileName, about: profileJob, avatar: profileAvatar });
 
+// попап картинки
 const editAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
   editAvatarPopup.loading(true)
   api.editAvatar(data)
@@ -120,15 +146,39 @@ const editAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
     });
 })
 
-editAvatarPopup.setEventListeners()
+// попап удаления карточки
+
+const deleteCardPopup = new PopupWithConfirmation(popupDeliteCard);
+deleteCardPopup.setEventListeners();
 
 profileButonEditAvatar.addEventListener('click', () => {
   editAvatarPopup.open();
 })
 
+// создание попап c картинкой
+export const popupImg = new PopupWithImage(popupOpenZoom);
+// установить слушатели для попап
+addCardPopup.setEventListeners();
+popupImg.setEventListeners();
+editAvatarPopup.setEventListeners()
 
 
-// секция для карточек
+// отслеживание кнопки "редактировать профиль"
+profileButtonEdit.addEventListener('click', function () {
+  const info = userInfo.getUserInfo();
+  profileEditName.value = info.name;
+  ptofileEditJob.value = info.about;
+  profileValidation.toogleButtonState();
+  editProfilePopup.open();
+});
+
+
+// отслеживание кнопки "добавить карточку"
+
+profileButtonAdd.addEventListener('click', function () {
+  addCardValidation.toogleButtonState();
+  addCardPopup.open();
+});
 
 
 // запуск валидация форм
@@ -138,50 +188,3 @@ const editAvatarValidation = new FormValidator(config, formElementAvatar);
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
 editAvatarValidation.enableValidation();
-// редактирование информации пользователя
-
-
-
-// создание новой карточкий пользователем
-const addCard = new PopupWithForm(popupAddCard, (data) => {
-  addCard.loading(true)
-  api.addCard(data)
-    .then((data) => {
-      const addNewCard = createCard(data);
-      cardSection.prependItem(addNewCard);
-    }).catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      addCard.loading(false);
-    });
-});
-
-const cardSection = new Section((data) => {
-  cardSection.addItem(createCard(data));
-}
-  , galleryContainer);
-
-// создание попап c картинкой
-export const popupImg = new PopupWithImage(popupOpenZoom);
-// установить слушатели для попап
-addCard.setEventListeners();
-popupImg.setEventListeners();
-
-// отслеживание кнопки "редактировать профиль"
-profileButtonEdit.addEventListener('click', function () {
-  const info = userInfo.getUserInfo();
-  profileEditName.value = info.name;
-  ptofileEditJob.value = info.about;
-  profileValidation.toogleButtonState();
-  editProfile.open();
-});
-
-
-// отслеживание кнопки "добавить карточку"
-
-profileButtonAdd.addEventListener('click', function () {
-  addCardValidation.toogleButtonState();
-  addCard.open();
-});
-

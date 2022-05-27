@@ -3,27 +3,21 @@ export default class Api {
     this._url = config.url;
     this._headers = config.headers;
   }
+
   _handleResponse(res) {
     if (!res.ok) {
       return Promise.reject(`Error: ${res.status}`);
     }
     return res.json();
   }
-  getall() {
-    return fetch(`${this._url}users/me`, {
-      headers: this._headers
-    }).then(res => res.json())
-      .then((result) => {
-        console.log(result);
-      });
-  }
+// загрузка карточек с сервера
   getInitialCards() {
     return fetch(`${this._url}cards`, {
       headers: this._headers
     })
       .then(res => this._handleResponse(res));
   }
-
+// добавление новой карточки
   addCard(data) {
     return fetch(`${this._url}cards`, {
       method: 'POST',
@@ -35,7 +29,7 @@ export default class Api {
     })
       .then(res => this._handleResponse(res));
   }
-
+// удаление карточки
   deleteCard(cardId) {
     return fetch(`${this._url}cards/${cardId}`, {
       method: 'DELETE',
@@ -44,6 +38,7 @@ export default class Api {
       .then(res => this._handleResponse(res));
   }
 
+// добавить лайк
   setLike(cardId) {
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: 'PUT',
@@ -51,7 +46,7 @@ export default class Api {
     })
       .then(res => this._handleResponse(res));
   }
-
+// удалить лайк
   deleteLike(cardId) {
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: 'DELETE',
@@ -59,14 +54,14 @@ export default class Api {
     })
       .then(res => this._handleResponse(res));
   }
-
+// получить информацию о пользователе
   getUserInfo() {
     return fetch(`${this._url}users/me`, {
       headers: this._headers
     })
       .then(res => this._handleResponse(res));
   }
-
+// заменить информацию пользователя
   editUserInfo(data) {
     return fetch(`${this._url}users/me`, {
       method: 'PATCH',
@@ -78,7 +73,7 @@ export default class Api {
     })
       .then(res => this._handleResponse(res));
   }
-
+// заменить аватар 
   editAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',

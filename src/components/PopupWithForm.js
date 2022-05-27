@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
     this._submitButton = this._form.querySelector('.popup__submit');
     this._submitButtonText = this._submitButton.textContent;
   }
-
+// получаем объект с данными инпутов
   _getInputValues() {
     const data = {};
     this._inputList.forEach((input) => {
@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
     this._form.reset()
   }
 
-  setEventListeners() {   // установить слушатели
+  setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -31,7 +31,7 @@ export default class PopupWithForm extends Popup {
       this.close();
     });
   }
-
+// меняем состояние кнопки при загрузке
   loading(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = 'Сохранение...'

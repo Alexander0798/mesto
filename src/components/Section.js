@@ -3,7 +3,7 @@ export default class Section {
     this._renderer = renderer;
     this._containerElement = containerSelector;
   }
-
+  
   addItem(element) {
     this._containerElement.append(element);
   }

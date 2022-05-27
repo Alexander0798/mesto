@@ -12,6 +12,7 @@ export default class Cards {
     this._addLike = addLike;
     this._disLike = disLike;
   }
+
   _getTemplate() {
     const cardElement = this._cardSelector
       .content
@@ -25,7 +26,7 @@ export default class Cards {
     this._element.remove();
     this._element = null;
   }
-
+// собераем карточку
   generateCard() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector('.card__img')
@@ -43,7 +44,7 @@ export default class Cards {
 
     return this._element
   }
-
+// красим отмеченые пользователем лайка
   _isCardLiked() {
     if (this._likes.some((user) => {
       return this._userId === user._id;
@@ -51,13 +52,13 @@ export default class Cards {
       this._likeButton.classList.add('card_like-active');
     }
   }
-
+// добавляем лайки
   handleLikeCard(data) {
     this._likes = data.likes;
     this._likesNumber.textContent = this._likes.length;
     this._likeButton.classList.toggle('card_like-active');
   }
-
+// удаляем карточку
   _hasDeleteButton() {
     if (this._userId !== this._cardOwnerId) {
       this._deleteButton.remove();
@@ -73,7 +74,7 @@ export default class Cards {
       }
     })
     this._deleteButton.addEventListener('click', () => {
-      this._element.remove()
+      this._handleDeleteClick(this._cardId);
     })
     this._image.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link)
