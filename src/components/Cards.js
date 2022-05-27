@@ -40,7 +40,6 @@ export default class Cards {
     this._hasDeleteButton();
     this._isCardLiked();
     this._likesNumber.textContent = this._likes.length;
-    this._setEventListeners();
 
     return this._element
   }
@@ -67,7 +66,6 @@ export default class Cards {
 
   _setEventListeners() {
     this._likeButton.addEventListener('click', (evt) => {
-      this._likeButton.classList.toggle('card_like-active')
       if (this._likeButton.classList.contains('card_like-active')) {
         this._disLike(this._cardId);
       } else {

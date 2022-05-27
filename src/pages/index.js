@@ -37,7 +37,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
-
 let userId;
 
 // Загрузка готовых карточек и данных о пользователе с сервера
