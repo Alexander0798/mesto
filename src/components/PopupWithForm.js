@@ -8,7 +8,6 @@ export default class PopupWithForm extends Popup {
     this._submit = handleSubmitForm
     this._submitButton = this._form.querySelector('.popup__submit');
     this._submitButtonText = this._submitButton.textContent;
-    this._errorTextList = Array.from(this._form.querySelectorAll('.popup__error'))
   }
 // получаем объект с данными инпутов
   _getInputValues() {
@@ -18,19 +17,10 @@ export default class PopupWithForm extends Popup {
     });
     return data;
   }
-  _getResetErrorText() {
-    this._inputList.forEach((input) => {
-      input.classList.remove('popup__input_error')
-    })
-    this._errorTextList.forEach((errorText) => {
-      errorText.textContent = ''
-      errorText.classList.remove('popup__error_visible')
-    })
-  }
+
   close() {
     super.close()
     this._form.reset()
-    this._getResetErrorText()
   }
 
   setEventListeners() {

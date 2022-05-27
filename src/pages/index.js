@@ -161,6 +161,7 @@ editAvatarPopup.setEventListeners()
 
 profileButonEditAvatar.addEventListener('click', () => {
   editAvatarPopup.open();
+  editAvatarValidation.ressetValidForm()
 })
 
 // отслеживание кнопки "редактировать профиль"
@@ -168,7 +169,7 @@ profileButtonEdit.addEventListener('click', function () {
   const info = userInfo.getUserInfo();
   profileEditName.value = info.name;
   ptofileEditJob.value = info.about;
-  profileValidation.toogleButtonState();
+  profileValidation.ressetValidForm();
   editProfilePopup.open();
 });
 
@@ -176,6 +177,7 @@ profileButtonEdit.addEventListener('click', function () {
 // отслеживание кнопки "добавить карточку"
 
 profileButtonAdd.addEventListener('click', function () {
+  addCardValidation.ressetValidForm()
   addCardPopup.open();
 });
 
