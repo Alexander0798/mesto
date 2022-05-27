@@ -47,28 +47,34 @@ export const config = {
 // контейнер в котором лежит весь контент
 const page = document.querySelector('.page');
 
-// кнопки: редактировать профиль, добавить карточку
+// кнопки: редактировать профиль, добавить карточку, удалить карточку
 export const profileButtonEdit = page.querySelector('.profile__button-edit');
 export const profileButtonAdd = page.querySelector('.profile__button-add');
+export const profileButonEditAvatar = page.querySelector('.profile__button-avatar');
 
 // попапы
 export const popupEditInfo = page.querySelector('#popupEditInfo');
 export const popupAddCard = page.querySelector('#popupAddCard');
 export const popupOpenZoom = page.querySelector('#popupImgZoom');
+export const popupEditAvatar = page.querySelector('#popupEditAvatar');
+export const popupDeliteCard = page.querySelector('#popupDeliteCard');
 
 // элементы профиля
 export const profileName = page.querySelector('.profile__title');
 export const profileJob = page.querySelector('.profile__job');
+export const profileAvatar = page.querySelector('.profile__img')
 
 // элементы form edit
 export const profileEditName = document.forms.editInfo.name
-export const ptofileEditJob = document.forms.editInfo.job
+export const ptofileEditJob = document.forms.editInfo.about
 
 // forms
 export const formElementEdit = document.forms.editInfo
 export const formElementAdd = document.forms.addNewCard
+export const formElementAvatar = document.forms.editAvatar
 
 // элементы галлереи и темплейт контейнера
 export const galleryContainer = page.querySelector('.gallery');
 export const temlateContainer = document.querySelector('#item-temlate')
+
 

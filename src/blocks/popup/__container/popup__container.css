@@ -9,6 +9,7 @@
   flex-direction: column;
   color: black;
   box-sizing: border-box;
+  flex: 1;
 }
 @media (min-width: 500px) {
   .popup__container {

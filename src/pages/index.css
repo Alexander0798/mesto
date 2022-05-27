@@ -21,6 +21,8 @@
 @import url(../blocks/profile/__img/profile__img.css);
 @import url(../blocks/profile/__buttone-add/profile__button-add.css);
 @import url(../blocks/profile/__buttone-edit/profile__button-edit.css);
+@import url(../blocks/profile/__button-avatar/profile__button-avatar.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
 
 /*---GALLERY---------------------------------------------------------------*/
 
