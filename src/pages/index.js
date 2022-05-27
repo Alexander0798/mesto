@@ -37,7 +37,6 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
-api.getall()
 
 let userId;
 
@@ -52,58 +51,86 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     console.log(`Ошибка: ${err}`);
   });
 
+  const createCard = (data) => {
+    const newCard = new Cards(data, temlateContainer, userId, {
+      handleCardClick: (name, link) => {
+        popupImg.open(name, link);
+      }, handleDeleteClick: (cardId) => {
+        deleteCardPopup.open();
+        deleteCardPopup.submitCallback(() => {
+          api.deleteCard(cardId)
+            .then(() => {
+              deleteCardPopup.close();
+              newCard.deleteCard();
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            });
+        })
+      }, addLike: (cardId) => {
+        api.setLike(cardId)
+          .then((data) => {
+            newCard.handleLikeCard(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      }, disLike: (cardId) => {
+        api.deleteLike(cardId)
+          .then((data) => {
+            newCard.handleLikeCard(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      }
+    });
+    return newCard.generateCard();
+  }
+
+  const editProfile = new PopupWithForm(popupEditInfo, (userData) => {
+    editProfile.loading(true);
+    api.editUserInfo(userData)
+      .then((userData) => {
+        userInfo.setUserInfo(userData);
+        editProfile.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editProfile.loading(false);
+      });
+  });
+  editProfile.setEventListeners();
+
 const userInfo = new UserInfo({ name: profileName, about: profileJob, avatar: profileAvatar });
 
-const editProfilePopup = new PopupWithForm(popupEditInfo, (userData) => {
-  editProfilePopup.loading(true);
-  api.editUserInfo(userData)
-    .then((userData) => {
-      userInfo.setUserInfo(userData);
-      editProfilePopup.close();
+const editAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
+  editAvatarPopup.loading(true)
+  api.editAvatar(data)
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      editAvatarPopup.close();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
-      editProfilePopup.loading(false);
+      editAvatarPopup.loading(false);
     });
-});
-editProfilePopup.setEventListeners();
-
-const editAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
-  editAvatarPopup.loading(true)
-  api.editAvatar(data)
-  .then((data) => {
-    console.log(data.avatar)
-    profileAvatar.src = data.avatar;
-    editAvatarPopup.close();
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  })
-  .finally(() => {
-    editAvatarPopup.loading(false);
-  });
 })
 
 editAvatarPopup.setEventListeners()
 
-profileButonEditAvatar.addEventListener('click',  () => {
+profileButonEditAvatar.addEventListener('click', () => {
   editAvatarPopup.open();
 })
 
-const createCard = (item) => {
-  const newCard = new Cards(item, temlateContainer, (link, name) => {
-    popupImg.open(link, name);
-  });
-  return newCard.generateCard();
-}
+
 
 // секция для карточек
-const cardSection = new Section((item) => {
-    cardSection.addItem(createCard(item));
-  }
-, galleryContainer);
+
 
 // запуск валидация форм
 const profileValidation = new FormValidator(config, formElementEdit);
@@ -117,15 +144,29 @@ editAvatarValidation.enableValidation();
 
 
 // создание новой карточкий пользователем
-const popupAdd = new PopupWithForm(popupAddCard, (data) => {
-  const addNewCard = createCard(data);
-  cardSection.prependItem(addNewCard);
+const addCard = new PopupWithForm(popupAddCard, (data) => {
+  addCard.loading(true)
+  api.addCard(data)
+    .then((data) => {
+      const addNewCard = createCard(data);
+      cardSection.prependItem(addNewCard);
+    }).catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      addCard.loading(false);
+    });
 });
+
+const cardSection = new Section((data) => {
+  cardSection.addItem(createCard(data));
+}
+  , galleryContainer);
 
 // создание попап c картинкой
 export const popupImg = new PopupWithImage(popupOpenZoom);
 // установить слушатели для попап
-popupAdd.setEventListeners();
+addCard.setEventListeners();
 popupImg.setEventListeners();
 
 // отслеживание кнопки "редактировать профиль"
@@ -134,7 +175,7 @@ profileButtonEdit.addEventListener('click', function () {
   profileEditName.value = info.name;
   ptofileEditJob.value = info.about;
   profileValidation.toogleButtonState();
-  editProfilePopup.open();
+  editProfile.open();
 });
 
 
@@ -142,6 +183,6 @@ profileButtonEdit.addEventListener('click', function () {
 
 profileButtonAdd.addEventListener('click', function () {
   addCardValidation.toogleButtonState();
-  popupAdd.open();
+  addCard.open();
 });
 
