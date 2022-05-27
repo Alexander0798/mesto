@@ -102,6 +102,7 @@ const addCardPopup = new PopupWithForm(popupAddCard, (data) => {
     .then((data) => {
       const addNewCard = createCard(data);
       cardSection.prependItem(addNewCard);
+      addCardPopup.close();
     }).catch((err) => {
       console.log(`Ошибка: ${err}`);
     })
@@ -149,19 +150,18 @@ const editAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
 // попап удаления карточки
 
 const deleteCardPopup = new PopupWithConfirmation(popupDeliteCard);
-deleteCardPopup.setEventListeners();
-
-profileButonEditAvatar.addEventListener('click', () => {
-  editAvatarPopup.open();
-})
 
 // создание попап c картинкой
 export const popupImg = new PopupWithImage(popupOpenZoom);
 // установить слушатели для попап
+deleteCardPopup.setEventListeners();
 addCardPopup.setEventListeners();
 popupImg.setEventListeners();
 editAvatarPopup.setEventListeners()
 
+profileButonEditAvatar.addEventListener('click', () => {
+  editAvatarPopup.open();
+})
 
 // отслеживание кнопки "редактировать профиль"
 profileButtonEdit.addEventListener('click', function () {
@@ -176,7 +176,6 @@ profileButtonEdit.addEventListener('click', function () {
 // отслеживание кнопки "добавить карточку"
 
 profileButtonAdd.addEventListener('click', function () {
-  addCardValidation.toogleButtonState();
   addCardPopup.open();
 });
 
